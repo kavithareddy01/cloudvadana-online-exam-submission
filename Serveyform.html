@@ -1,0 +1,158 @@
+
+<!-- Create a survey form with Fields; First Name, Last Name, Date of Birth, Country
+(dropdown), Gender (checkbox), Profession, email, and mobile number. All the input
+fields are necessary to submit the form. Create two buttons Submit and Reset. Reset will
+reset the form while clicking on submit, first, it will check all the fields and necessary
+validations and then a popup will appear displaying all the selected values with labels in
+front of it. On closing the popup, the form should reset all the values. Use the following
+image for reference -->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Survey Form</title>
+ <style>*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+ }
+ body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    
+    #surveyForm {
+      width: 60%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    select,
+    input[type="email"],
+    input[type="tel"] {
+      width: calc(100% - 12px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    
+    input[type="button"] {
+      padding: 8px 20px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+    
+    #popup {
+      display: none;
+      padding: 20px;
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+ </style>
+</head>
+<body>
+ <form id="surveyForm" action="#" method="post">
+ <label for="firstName">First Name:</label>
+ <input type="text" id="firstName" name="firstName" required><br><br>
+ 
+ <label for="lastName">Last Name:</label>
+ <input type="text" id="lastName" name="lastName" required><br><br>
+ 
+ <label for="dob">Date of Birth:</label>
+ <input type="date" id="dob" name="dob" required><br><br>
+ 
+ <label for="country">Country:</label>
+ <select id="country" name="country" required>
+ <option value="USA">USA</option>
+ <option value="Canada">Canada</option>
+ </select><br><br>
+ 
+ <label>Gender:</label><br>
+ <input type="checkbox" id="male" name="gender" value="Male">
+ <label for="male">Male</label><br>
+ 
+ <input type="checkbox" id="female" name="gender" value="Female">
+ <label for="female">Female</label><br>
+ 
+ <input type="checkbox" id="other" name="gender" value="Other">
+ <label for="other">Other</label><br><br>
+ 
+ <label for="profession">Profession:</label>
+ <input type="text" id="profession" name="profession" required><br><br>
+ 
+ <label for="email">Email:</label>
+ <input type="email" id="email" name="email" required><br><br>
+ 
+ <label for="mobile">Mobile Number:</label>
+ <input type="tel" id="mobile" name="mobile" required><br><br>
+ 
+ <input type="button" value="Reset" onclick="resetForm()">
+ <input type="button" value="Submit" onclick="submitForm()">
+ </form>
+ <div id="popup" style="display: none;">
+ </div>
+ <script>
+ function resetForm() {
+ document.getElementById("surveyForm").reset();
+ }
+ function submitForm() {
+ const firstName = document.getElementById("firstName").value;
+ const lastName = document.getElementById("lastName").value;
+ const dob = document.getElementById("dob").value;
+ const country = document.getElementById("country").value;
+ const gender = 
+Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(checkbox => 
+checkbox.value).join(", ");
+ const profession = document.getElementById("profession").value;
+ const email = document.getElementById("email").value;
+ const mobile = document.getElementById("mobile").value;
+ 
+ const popupMessage = `
+ <p>First Name: ${firstName}</p>
+ <p>Last Name: ${lastName}</p>
+ <p>Date of Birth: ${dob}</p>
+ <p>Country: ${country}</p>
+ <p>Gender: ${gender}</p>
+ <p>Profession: ${profession}</p>
+ <p>Email: ${email}</p>
+ <p>Mobile Number: ${mobile}</p>
+ `;
+ 
+ document.getElementById("popup").innerHTML = popupMessage;
+ document.getElementById("popup").style.display = "block";
+ 
+ 
+ document.getElementById("surveyForm").reset();
+ }
+ </script>
+ </body>
+</html>

@@ -1,0 +1,123 @@
+<!-- 2.Create a basic calculator using HTML, CSS, and JavaScript with the functionality of add, -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Basic Calculator</title>
+ <style>
+ .calculator {
+ width: 320px;
+ background-color: #f2f2f2;
+ border: 1px solid #d1d1d1;
+ border-radius: 10px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+ .calculator input[type="text"] {
+ width: 100%;
+ height: 40px;
+ font-size: 24px;
+ text-align: right;
+ margin-bottom: 10px;
+ }
+ .calculator .btn {
+ width: 60px;
+ height: 60px;
+ font-size: 20px;
+ margin: 5px;
+ cursor: pointer;
+ }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      width: 300px;
+      background-color: #fff;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .calculator input[type="text"] {
+      width: calc(100% - 10px);
+      height: 40px;
+      font-size: 24px;
+      text-align: right;
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .calculator .btn {
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+      margin: 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s ease;
+    }
+
+    .calculator .btn:hover {
+      background-color: #e9e9e9;
+    }
+ </style>
+</head>
+<body>
+ <div class="calculator">
+ <input type="text" id="display" readonly>
+ <div class="btn" onclick="clearDisplay()">C</div>
+ <div class="btn" onclick="appendToDisplay('7')">7</div>
+ <div class="btn" onclick="appendToDisplay('8')">8</div>
+ <div class="btn" onclick="appendToDisplay('9')">9</div>
+ <div class="btn" onclick="appendToDisplay('+')">+</div>
+ <div class="btn" onclick="appendToDisplay('4')">4</div>
+ <div class="btn" onclick="appendToDisplay('5')">5</div>
+ <div class="btn" onclick="appendToDisplay('6')">6</div>
+ <div class="btn" onclick="appendToDisplay('-')">-</div>
+ <div class="btn" onclick="appendToDisplay('1')">1</div>
+ <div class="btn" onclick="appendToDisplay('2')">2</div>
+ <div class="btn" onclick="appendToDisplay('3')">3</div>
+ <div class="btn" onclick="appendToDisplay('*')">*</div>
+ <div class="btn" onclick="appendToDisplay('0')">0</div>
+ <div class="btn" onclick="appendToDisplay('.')">.</div>
+ <div class="btn" onclick="calculateResult()">=</div>
+ <div class="btn" onclick="appendToDisplay('/')">/</div>
+ </div>
+ <script>
+ let currentInput = '';
+ function appendToDisplay(value) {
+ currentInput += value;
+ document.getElementById('display').value = currentInput;
+ }
+ function clearDisplay() {
+ currentInput = '';
+ document.getElementById('display').value = '';
+ }
+ function calculateResult() {
+ try {
+ currentInput = eval(currentInput).toString();
+ document.getElementById('display').value = currentInput;
+ } catch (error) {
+ document.getElementById('display').value = 'Error';
+ }
+ }
+ </script>
+</body>
+</html>
